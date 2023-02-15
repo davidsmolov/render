@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <title>Document</title>
+</head>
+<body>
+
+<div id="print">
+<form action = "http://localhost:5000/add" method = "post">  
+    <table>  
+   <tr><td>id</td>  
+   <td><input type ="number" name ="id"></td></tr>  
+   <tr><td>first name</td>  
+   <td><input type ="text" name ="first_name"></td></tr>
+   <tr><td>last namea</td>  
+    <td><input type ="text" name ="last_name"></td></tr>  
+    
+   <tr><td><input type = "submit" value="Add"></td></tr>
+</div>
+
+<div id="Delete">
+<form action = "http://localhost:5000/delete" method = "delete">
+    <table>  
+   <tr><td>id</td>  
+   <td><input type ="number" name ="id"></td></tr>  
+    
+   <tr><td><input type = "submit" value="Delete"></td></tr>
+</div>
+   <div id="result">test</div>
+
+
+   <script>
+    const MY_SERV = "http://127.0.0.1:5000"
+    async function print(){
+    var parm = await axios.get(MY_SERV).then (async res => res.data);
+console.log(parm)
+for (var i=0; i< parm.length; i++){
+    console.log(parm[i])
+var resultString = "ID: " + parm[i][0] + "<br>First Name: " + parm[i][1] + "<br>Last Name: " + parm[i][2] + "<br><br>";
+result.innerHTML += resultString;}
+    }
+   window.onload = print()
+
+   
+</script>
+</body>
+</html>
